@@ -1,5 +1,6 @@
-import BottomSheet from "./BottomSheet";
+import ImageSelect from "./ImageSelect";
 import Buttons from "./Buttons";
-import ImageView from "./ImageView";
+import ImageEdit from "./ImageEdit";
+import DrawingCanvas from "./DrawingCanvas";
 
-export { ImageView, BottomSheet, Buttons };
+export { ImageEdit, ImageSelect, Buttons, DrawingCanvas };

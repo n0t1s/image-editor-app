@@ -1,33 +1,69 @@
+import { AntDesign, FontAwesome5, MaterialIcons } from "@expo/vector-icons";
 import React, { useRef, useState } from "react";
-import { Button, Card, View, XStack, YStack } from "tamagui";
-import { AntDesign, MaterialIcons, FontAwesome5 } from "@expo/vector-icons";
+import { Dimensions, Pressable } from "react-native";
 import SignatureScreen, {
   SignatureViewRef,
 } from "react-native-signature-canvas";
-import { Dimensions, Pressable } from "react-native";
+import * as MediaLibrary from "expo-media-library";
+import { captureRef } from "react-native-view-shot";
+import { Button, Card, View, XStack, YStack } from "tamagui";
 import Buttons from "./Buttons";
+import Toast from "react-native-simple-toast";
 
 const { width, height } = Dimensions.get("window");
-interface ImageViewProps {
+interface ImageEditProps {
   image: string | undefined;
   setImage: React.Dispatch<React.SetStateAction<string | undefined>>;
+  setImageEdit: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const ImageView: React.FC<ImageViewProps> = ({ image, setImage }) => {
+const ImageEdit: React.FC<ImageEditProps> = ({
+  image,
+  setImage,
+  setImageEdit,
+}) => {
+  const [status, requestPermission] = MediaLibrary.usePermissions();
   const ref = useRef<SignatureViewRef>(null);
+  const imageRef = useRef(null);
   const [isColorPalette, setColorPalette] = useState(false);
-  const colorOptions = ["#333", "#FFF", "#F13A3A", "#58B650", "#1A9B94"];
+  const colorOptions = ["#555", "#FFF", "#F13A3A", "#58B650", "#1A9B94"];
+
+  if (status === null) {
+    requestPermission();
+  }
 
   const handleColorChange = (color: string) => {
     ref?.current?.changePenColor(color);
     setColorPalette(false);
   };
 
+  const onSaveImageAsync = async () => {
+    try {
+      const localUri = await captureRef(imageRef, {
+        quality: 1,
+      });
+
+      await MediaLibrary.saveToLibraryAsync(localUri);
+      if (localUri) {
+        Toast.show("Saved ✅", Toast.BOTTOM);
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
   return (
     <YStack>
-      <Card elevate overflow="hidden" width={width} height={height * 0.85}>
+      <Card
+        ref={imageRef}
+        elevate
+        overflow="hidden"
+        width={width}
+        height={height * 0.85}
+      >
         <SignatureScreen
           ref={ref}
+          onOK={onSaveImageAsync}
           bgSrc={image}
           bgWidth={width}
           bgHeight={height * 0.85}
@@ -74,7 +110,7 @@ const ImageView: React.FC<ImageViewProps> = ({ image, setImage }) => {
         >
           <Buttons
             onPress={() => {
-              setImage(undefined);
+              setImageEdit(false);
             }}
           >
             <AntDesign name="close" size={24} color="white" />
@@ -87,7 +123,11 @@ const ImageView: React.FC<ImageViewProps> = ({ image, setImage }) => {
               <MaterialIcons name="redo" size={24} color="white" />
             </Buttons>
           </XStack>
-          <Button size="$3" chromeless>
+          <Button
+            size="$3"
+            chromeless
+            onPress={() => ref?.current?.readSignature()}
+          >
             <AntDesign name="check" size={24} color="white" />
           </Button>
         </XStack>
@@ -96,4 +136,4 @@ const ImageView: React.FC<ImageViewProps> = ({ image, setImage }) => {
   );
 };
 
-export default ImageView;
+export default ImageEdit;

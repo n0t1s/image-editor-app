@@ -1,32 +1,29 @@
-import React, { useRef, useState } from "react";
-import { YStack, Label } from "tamagui";
-import { AntDesign } from "@expo/vector-icons";
-import RBSheet from "react-native-raw-bottom-sheet";
+import React, { useState } from "react";
+import { YStack } from "tamagui";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { Pressable } from "react-native";
-import { BottomSheet, ImageView } from "../components";
+import { ImageSelect, ImageEdit } from "../components";
 
 export default function MainScreen() {
-  const refRBSheet = useRef<RBSheet>(null);
   const [image, setImage] = useState<string | undefined>();
+  const [imageEdit, setImageEdit] = useState(false);
 
   return (
     <YStack gap="$2">
       <SafeAreaView>
-        {!image ? (
-          <YStack gap="$4" alignItems="center" marginTop="$10">
-            <Label fontSize={"$9"}>Upload Image</Label>
-            <Pressable
-              onPress={() => refRBSheet.current && refRBSheet.current.open()}
-            >
-              <AntDesign name="pluscircleo" size={40} color="white" />
-            </Pressable>
-          </YStack>
+        {!imageEdit ? (
+          <ImageSelect
+            image={image}
+            setImage={setImage}
+            setImageEdit={setImageEdit}
+          />
         ) : (
-          <ImageView image={image} setImage={setImage} />
+          <ImageEdit
+            image={image}
+            setImage={setImage}
+            setImageEdit={setImageEdit}
+          />
         )}
       </SafeAreaView>
-      <BottomSheet refRBSheet={refRBSheet} setImage={setImage} />
     </YStack>
   );
 }

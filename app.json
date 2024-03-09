@@ -31,7 +31,15 @@
     },
     "plugins": [
       "expo-router",
-      "expo-font"
+      "expo-font",
+      [
+        "expo-media-library",
+        {
+          "photosPermission": "Allow Image editor to access your photos.",
+          "savePhotosPermission": "Allow Image editor to save photos.",
+          "isAccessMediaLocationEnabled": true
+        }
+      ]
     ],
     "experiments": {
       "typedRoutes": true
