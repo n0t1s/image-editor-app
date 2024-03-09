@@ -1693,6 +1693,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@egjs/hammerjs@npm:^2.0.17":
+  version: 2.0.17
+  resolution: "@egjs/hammerjs@npm:2.0.17"
+  dependencies:
+    "@types/hammerjs": "npm:^2.0.36"
+  checksum: f695129d45edfcfd6c5f2d1d36186da36ffade013991972ce23721a6b7ad7f214ce282abc4023e3f6b63062620852a63e897b523f247804afc7acd188fee9d9d
+  languageName: node
+  linkType: hard
+
 "@emotion/is-prop-valid@npm:^0.8.2":
   version: 0.8.8
   resolution: "@emotion/is-prop-valid@npm:0.8.8"
@@ -1886,16 +1895,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@expo/cli@npm:0.17.7":
-  version: 0.17.7
-  resolution: "@expo/cli@npm:0.17.7"
+"@expo/cli@npm:0.17.5":
+  version: 0.17.5
+  resolution: "@expo/cli@npm:0.17.5"
   dependencies:
     "@babel/runtime": "npm:^7.20.0"
     "@expo/code-signing-certificates": "npm:0.0.5"
     "@expo/config": "npm:~8.5.0"
     "@expo/config-plugins": "npm:~7.8.0"
     "@expo/devcert": "npm:^1.0.0"
-    "@expo/env": "npm:~0.2.2"
+    "@expo/env": "npm:~0.2.0"
     "@expo/image-utils": "npm:^0.4.0"
     "@expo/json-file": "npm:^8.2.37"
     "@expo/metro-config": "npm:~0.17.0"
@@ -1968,7 +1977,7 @@ __metadata:
     ws: "npm:^8.12.1"
   bin:
     expo-internal: build/bin/cli
-  checksum: c4d102adf9553444d175e49cefe898e5675c51b9c825ed815091b03c220438582e3f2a1d7753a430d1b38cf9fcdac52cc775c322d59c5db83f2816027a8d401e
+  checksum: 0b68ec76920ebab7b7be61fb91a114bd67da0f0cb370eb3cc73620c55207daf667e9916a904bd606cd4f012d9e8b1c690ba7eafa85f4e074a660d9efe20b481c
   languageName: node
   linkType: hard
 
@@ -2111,19 +2120,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@expo/env@npm:~0.2.2":
-  version: 0.2.2
-  resolution: "@expo/env@npm:0.2.2"
-  dependencies:
-    chalk: "npm:^4.0.0"
-    debug: "npm:^4.3.4"
-    dotenv: "npm:~16.0.3"
-    dotenv-expand: "npm:~10.0.0"
-    getenv: "npm:^1.0.0"
-  checksum: 740b92cafe3424e95e61ead316c8902b2764fa37fb48c8458477aa4582dbf6daf331b86058ea3dc0b1dff2738b6aa16c2b065d5c2d21ef4454277cfdb5b42566
-  languageName: node
-  linkType: hard
-
 "@expo/fingerprint@npm:^0.6.0":
   version: 0.6.0
   resolution: "@expo/fingerprint@npm:0.6.0"
@@ -2170,16 +2166,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@expo/metro-config@npm:0.17.6":
-  version: 0.17.6
-  resolution: "@expo/metro-config@npm:0.17.6"
+"@expo/metro-config@npm:0.17.4":
+  version: 0.17.4
+  resolution: "@expo/metro-config@npm:0.17.4"
   dependencies:
     "@babel/core": "npm:^7.20.0"
     "@babel/generator": "npm:^7.20.5"
     "@babel/parser": "npm:^7.20.0"
     "@babel/types": "npm:^7.20.0"
     "@expo/config": "npm:~8.5.0"
-    "@expo/env": "npm:~0.2.2"
+    "@expo/env": "npm:~0.2.0"
     "@expo/json-file": "npm:~8.3.0"
     "@expo/spawn-async": "npm:^1.7.2"
     babel-preset-fbjs: "npm:^3.4.0"
@@ -2196,7 +2192,7 @@ __metadata:
     sucrase: "npm:3.34.0"
   peerDependencies:
     "@react-native/babel-preset": "*"
-  checksum: a595b1dde3ee7002fda30205f15e9272c2bda3128adefd2aa327102b558c2cd76b898a3ad9ed85993f57bd246275fd547c4fd3bed1e289b5f38ed0e2fb9c7c52
+  checksum: 807384d3a55d5df9d982b58a930487f32867af6297167181c576b41a1a2d4d9776fc4737cc3e129318142f594b674801320f4a6230ee15d5c869dc64ee46d7ee
   languageName: node
   linkType: hard
 
@@ -4994,6 +4990,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/hammerjs@npm:^2.0.36":
+  version: 2.0.45
+  resolution: "@types/hammerjs@npm:2.0.45"
+  checksum: 8d7f8791789853a9461f6445e625f18922a823a61042161dde5513f4a2c15ecd6361fa6f9b457ce13bfb6b518489b892fedb9e2cebb4420523cb45f1cbb4ee88
+  languageName: node
+  linkType: hard
+
 "@types/istanbul-lib-coverage@npm:*, @types/istanbul-lib-coverage@npm:^2.0.0":
   version: 2.0.6
   resolution: "@types/istanbul-lib-coverage@npm:2.0.6"
@@ -7011,23 +7014,23 @@ __metadata:
   languageName: node
   linkType: hard
 
-"expo-file-system@npm:~16.0.8":
-  version: 16.0.8
-  resolution: "expo-file-system@npm:16.0.8"
+"expo-file-system@npm:~16.0.6":
+  version: 16.0.6
+  resolution: "expo-file-system@npm:16.0.6"
   peerDependencies:
     expo: "*"
-  checksum: 5a21c54a459d73145dde9396b0b34b17d5ef4a7961de870476d850534981d11724efa2e1301525ed2deaef0a181c6692e8a7ebbfd1d8cfc742c5c285f81c6bb0
+  checksum: 63eb6ecb0f749225217dcd3657d9c38db2e3288b93e8d465fa67e32d0299a47ad78e1b52c06e58bf5b2e1d7de71222f7106d1b5f95b04cdc213eb4fc4af92021
   languageName: node
   linkType: hard
 
-"expo-font@npm:~11.10.3":
-  version: 11.10.3
-  resolution: "expo-font@npm:11.10.3"
+"expo-font@npm:~11.10.2":
+  version: 11.10.2
+  resolution: "expo-font@npm:11.10.2"
   dependencies:
     fontfaceobserver: "npm:^2.1.0"
   peerDependencies:
     expo: "*"
-  checksum: 662df49a89f1ef033a6b9ccddb84f9e866bb1045279508418a9815ab52d1b856b910a8b94ae32404f9d41ce4624c3a6e6d7e584c98e0917c53d041cc7ac873c3
+  checksum: 6ac97223d820af1150dc5fa7ecc62035153b4ce35aae873e7a002b0bafdae25b9a99686ceb65db1130f8acab471b148e2c8ebdc96fd28f29a240def825914b17
   languageName: node
   linkType: hard
 
@@ -7060,15 +7063,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"expo-linear-gradient@npm:~12.7.2":
-  version: 12.7.2
-  resolution: "expo-linear-gradient@npm:12.7.2"
-  peerDependencies:
-    expo: "*"
-  checksum: 74fc7449bc3400add8cb40173cf5f8010aa239d086a2d43031197c76a380905d126671db7d8efc332cb1e73f806e937156383092798bfb08c09e1191e606fa06
-  languageName: node
-  linkType: hard
-
 "expo-linking@npm:~6.2.1":
   version: 6.2.2
   resolution: "expo-linking@npm:6.2.2"
@@ -7095,18 +7089,18 @@ __metadata:
   languageName: node
   linkType: hard
 
-"expo-modules-core@npm:1.11.10":
-  version: 1.11.10
-  resolution: "expo-modules-core@npm:1.11.10"
+"expo-modules-core@npm:1.11.8":
+  version: 1.11.8
+  resolution: "expo-modules-core@npm:1.11.8"
   dependencies:
     invariant: "npm:^2.2.4"
-  checksum: 5471cb21e6eaaa899b25bba751782f5faee8c4f64015975bdf56b02bae3e980e32fd373b50ee6e69175fb2aaf1bead7fac982624bbe34d9052134c56289af4e5
+  checksum: 5d1619fab75536534bd0008ac8f1870c13fdd5991707f4533dd459265034850c27ec47dd96a7fce2940e3d63d218ebb346078f3d87cd70cdc1b0263370c5bb39
   languageName: node
   linkType: hard
 
-"expo-router@npm:~3.4.8":
-  version: 3.4.8
-  resolution: "expo-router@npm:3.4.8"
+"expo-router@npm:~3.4.7":
+  version: 3.4.7
+  resolution: "expo-router@npm:3.4.7"
   dependencies:
     "@expo/metro-runtime": "npm:3.1.3"
     "@expo/server": "npm:^0.3.0"
@@ -7133,7 +7127,7 @@ __metadata:
       optional: true
     react-native-reanimated:
       optional: true
-  checksum: c8fe551c1cd1d9c05707e6d1938ad0c32db6bdf668cac0bc62aaf0b741f275aa02c8337572ef1c75d6be7ba2f6fd209ca03cf9530006537aa5d33caafb6486ed
+  checksum: f754861af4c33a7f82add4ecba3e25e6c5fa41532c7862eadb4e018f2055d181cfd38075f6c568fd2c16ee7e3f5c77b54522757b7c30a366bcb7397d86fc95d0
   languageName: node
   linkType: hard
 
@@ -7179,28 +7173,28 @@ __metadata:
   languageName: node
   linkType: hard
 
-"expo@npm:~50.0.11":
-  version: 50.0.11
-  resolution: "expo@npm:50.0.11"
+"expo@npm:~50.0.6":
+  version: 50.0.6
+  resolution: "expo@npm:50.0.6"
   dependencies:
     "@babel/runtime": "npm:^7.20.0"
-    "@expo/cli": "npm:0.17.7"
+    "@expo/cli": "npm:0.17.5"
     "@expo/config": "npm:8.5.4"
     "@expo/config-plugins": "npm:7.8.4"
-    "@expo/metro-config": "npm:0.17.6"
+    "@expo/metro-config": "npm:0.17.4"
     "@expo/vector-icons": "npm:^14.0.0"
     babel-preset-expo: "npm:~10.0.1"
     expo-asset: "npm:~9.0.2"
-    expo-file-system: "npm:~16.0.8"
-    expo-font: "npm:~11.10.3"
+    expo-file-system: "npm:~16.0.6"
+    expo-font: "npm:~11.10.2"
     expo-keep-awake: "npm:~12.8.2"
     expo-modules-autolinking: "npm:1.10.3"
-    expo-modules-core: "npm:1.11.10"
+    expo-modules-core: "npm:1.11.8"
     fbemitter: "npm:^3.0.0"
     whatwg-url-without-unicode: "npm:8.0.0-3"
   bin:
     expo: bin/cli
-  checksum: de42ff5c15f9af75656c9784475b2a9eae683721610ea990ea57ba692e22de27b047ae24572916dfec58265fb1aa5feb18752e923fc3340a195a6dba2eddb0c5
+  checksum: 2bc912248418427e637d4f29b2c32712da4e01880672fcaedad70c77e931c6b478201f169f721b0a822507e180d700adb15f66c77853eb5c4f0d285f64a7b44f
   languageName: node
   linkType: hard
 
@@ -7917,6 +7911,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"hoist-non-react-statics@npm:^3.3.0":
+  version: 3.3.2
+  resolution: "hoist-non-react-statics@npm:3.3.2"
+  dependencies:
+    react-is: "npm:^16.7.0"
+  checksum: 1acbe85f33e5a39f90c822ad4d28b24daeb60f71c545279431dc98c312cd28a54f8d64788e477fe21dc502b0e3cf58589ebe5c1ad22af27245370391c2d24ea6
+  languageName: node
+  linkType: hard
+
 "hosted-git-info@npm:^3.0.2":
   version: 3.0.8
   resolution: "hosted-git-info@npm:3.0.8"
@@ -8020,9 +8023,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"image-editor-app@workspace:.":
+"image-doodle@workspace:.":
   version: 0.0.0-use.local
-  resolution: "image-editor-app@workspace:."
+  resolution: "image-doodle@workspace:."
   dependencies:
     "@babel/core": "npm:^7.23.3"
     "@expo/metro-runtime": "npm:~3.1.3"
@@ -8031,12 +8034,11 @@ __metadata:
     "@tamagui/metro-plugin": "npm:^1.91.3"
     "@types/react": "npm:~18.2.14"
     babel-preset-expo: "npm:^10.0.1"
-    expo: "npm:~50.0.11"
-    expo-font: "npm:~11.10.3"
+    expo: "npm:~50.0.6"
+    expo-font: "npm:~11.10.2"
     expo-image-picker: "npm:~14.7.1"
-    expo-linear-gradient: "npm:~12.7.2"
     expo-linking: "npm:~6.2.1"
-    expo-router: "npm:~3.4.8"
+    expo-router: "npm:~3.4.7"
     expo-splash-screen: "npm:~0.26.4"
     expo-status-bar: "npm:~1.11.1"
     expo-system-ui: "npm:~2.9.3"
@@ -8045,6 +8047,7 @@ __metadata:
     react-dom: "npm:^18.2.0"
     react-helmet-async: "npm:~2.0.4"
     react-native: "npm:0.73.4"
+    react-native-gesture-handler: "npm:^2.15.0"
     react-native-raw-bottom-sheet: "npm:^2.2.1"
     react-native-reanimated: "npm:~3.6.2"
     react-native-safe-area-context: "npm:4.8.2"
@@ -10753,7 +10756,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-is@npm:^16.13.0, react-is@npm:^16.13.1":
+"react-is@npm:^16.13.0, react-is@npm:^16.13.1, react-is@npm:^16.7.0":
   version: 16.13.1
   resolution: "react-is@npm:16.13.1"
   checksum: 5aa564a1cde7d391ac980bedee21202fc90bdea3b399952117f54fb71a932af1e5902020144fb354b4690b2414a0c7aafe798eb617b76a3d441d956db7726fdf
@@ -10787,6 +10790,22 @@ __metadata:
     react-native-svg:
       optional: true
   checksum: c90c1c97f38c64f4a6d4afd187ed9dcf1315629c75393f141165e47038c909323031c8c6708265035f03d0f61d7d77eb1118b593da27a3e62e891a61eb5f7fe0
+  languageName: node
+  linkType: hard
+
+"react-native-gesture-handler@npm:^2.15.0":
+  version: 2.15.0
+  resolution: "react-native-gesture-handler@npm:2.15.0"
+  dependencies:
+    "@egjs/hammerjs": "npm:^2.0.17"
+    hoist-non-react-statics: "npm:^3.3.0"
+    invariant: "npm:^2.2.4"
+    lodash: "npm:^4.17.21"
+    prop-types: "npm:^15.7.2"
+  peerDependencies:
+    react: "*"
+    react-native: "*"
+  checksum: 7feafdcfad1d4e066e5f238340b2f615d5abaa2b39c4d224e2eb0ed6563ce0afabcd1dd927f0aa5a0f3a9464f08909eb8d648a46dec3f25d08875ebc90258e14
   languageName: node
   linkType: hard
 

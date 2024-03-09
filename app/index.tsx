@@ -4,8 +4,7 @@ import { AntDesign } from "@expo/vector-icons";
 import RBSheet from "react-native-raw-bottom-sheet";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Pressable } from "react-native";
-import BottomSheet from "../components/BottomSheet";
-import ImageView from "../components/ImageView";
+import { BottomSheet, ImageView } from "../components";
 
 export default function MainScreen() {
   const refRBSheet = useRef<RBSheet>(null);
