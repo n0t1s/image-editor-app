@@ -1,8 +1,8 @@
-import { YStack, Button, Text, Card, Image } from "tamagui";
-import React from "react";
-import * as ImagePicker from "expo-image-picker";
-import { TouchableOpacity } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
+import * as ImagePicker from "expo-image-picker";
+import React, { useState } from "react";
+import { TouchableOpacity } from "react-native";
+import { Button, Card, Image, Text, YStack } from "tamagui";
 
 interface ImageSelectProps {
   image: string | undefined;
@@ -15,6 +15,7 @@ const ImageSelect: React.FC<ImageSelectProps> = ({
   setImage,
   setImageEdit,
 }) => {
+  const [isImageSelected, setIsImageSelected] = useState(false);
   const pickImage = async () => {
     try {
       const result = await ImagePicker.launchImageLibraryAsync({
@@ -26,9 +27,11 @@ const ImageSelect: React.FC<ImageSelectProps> = ({
       if (!result.canceled) {
         const base64 = `data:image/jpeg;base64,${result.assets[0].base64}`;
         setImage(base64);
+        setIsImageSelected(true);
       }
     } catch (error) {
       console.error("Error picking image: ", error);
+      setIsImageSelected(false);
     }
   };
   return (
@@ -41,7 +44,7 @@ const ImageSelect: React.FC<ImageSelectProps> = ({
           <FontAwesome name="image" size={24} color="white" />
           <Text>Choose a photo</Text>
         </Button>
-        <TouchableOpacity onPress={() => setImageEdit(true)}>
+        <TouchableOpacity onPress={() => isImageSelected && setImageEdit(true)}>
           <Text>Use this photo</Text>
         </TouchableOpacity>
       </YStack>

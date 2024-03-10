@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { YStack } from "tamagui";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { ImageSelect, ImageEdit } from "../components";
+import { YStack } from "tamagui";
+import { ImageEdit, ImageSelect } from "../components";
 
 export default function MainScreen() {
   const [image, setImage] = useState<string | undefined>();

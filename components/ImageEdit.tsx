@@ -1,16 +1,14 @@
 import { AntDesign, FontAwesome5, MaterialIcons } from "@expo/vector-icons";
-import React, { useRef, useState } from "react";
-import { Dimensions, Pressable } from "react-native";
-import SignatureScreen, {
-  SignatureViewRef,
-} from "react-native-signature-canvas";
 import * as MediaLibrary from "expo-media-library";
-import { captureRef } from "react-native-view-shot";
-import { Button, Card, View, XStack, YStack } from "tamagui";
-import Buttons from "./Buttons";
+import React, { useRef, useState } from "react";
+import { Pressable, StyleSheet } from "react-native";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
+import { Canvas, CanvasRef } from "react-native-image-draw";
 import Toast from "react-native-simple-toast";
+import { captureRef } from "react-native-view-shot";
+import { Card, Image, View, XStack, YStack } from "tamagui";
+import Buttons from "./Buttons";
 
-const { width, height } = Dimensions.get("window");
 interface ImageEditProps {
   image: string | undefined;
   setImage: React.Dispatch<React.SetStateAction<string | undefined>>;
@@ -23,9 +21,10 @@ const ImageEdit: React.FC<ImageEditProps> = ({
   setImageEdit,
 }) => {
   const [status, requestPermission] = MediaLibrary.usePermissions();
-  const ref = useRef<SignatureViewRef>(null);
-  const imageRef = useRef(null);
+  const wrapperRef = useRef(null);
+  const canvasRef = useRef<CanvasRef>(null);
   const [isColorPalette, setColorPalette] = useState(false);
+  const [brushColor, setBrushColor] = useState("#000");
   const colorOptions = ["#555", "#FFF", "#F13A3A", "#58B650", "#1A9B94"];
 
   if (status === null) {
@@ -33,13 +32,18 @@ const ImageEdit: React.FC<ImageEditProps> = ({
   }
 
   const handleColorChange = (color: string) => {
-    ref?.current?.changePenColor(color);
+    setBrushColor(color);
     setColorPalette(false);
+  };
+
+  const handleClose = () => {
+    setImageEdit(false);
+    setImage(undefined);
   };
 
   const onSaveImageAsync = async () => {
     try {
-      const localUri = await captureRef(imageRef, {
+      const localUri = await captureRef(wrapperRef, {
         quality: 1,
       });
 
@@ -54,26 +58,24 @@ const ImageEdit: React.FC<ImageEditProps> = ({
 
   return (
     <YStack>
-      <Card
-        ref={imageRef}
-        elevate
-        overflow="hidden"
-        width={width}
-        height={height * 0.85}
-      >
-        <SignatureScreen
-          ref={ref}
-          onOK={onSaveImageAsync}
-          bgSrc={image}
-          bgWidth={width}
-          bgHeight={height * 0.85}
-          webStyle={`.m-signature-pad {box-shadow: none; border: none; }
-          .m-signature-pad--body {border: none;}
-          .m-signature-pad--footer {display: none; margin: 0px;}
-          body,html {
-            width: 100%; height: 100%;}`}
-        />
-      </Card>
+      <GestureHandlerRootView>
+        <Card
+          ref={wrapperRef}
+          collapsable={false}
+          overflow="hidden"
+          aspectRatio={9 / 16}
+        >
+          <Image source={{ uri: image }} flex={1} resizeMode="contain" />
+          <Canvas
+            ref={canvasRef}
+            color={brushColor}
+            style={{
+              backgroundColor: "#0000",
+              ...StyleSheet.absoluteFillObject,
+            }}
+          />
+        </Card>
+      </GestureHandlerRootView>
       <YStack>
         <XStack
           justifyContent="space-between"
@@ -99,7 +101,7 @@ const ImageEdit: React.FC<ImageEditProps> = ({
               ))}
             </XStack>
           )}
-          <Buttons onPress={() => ref?.current?.clearSignature()}>
+          <Buttons onPress={() => canvasRef.current?.clear()}>
             <FontAwesome5 name="eraser" size={24} color="white" />
           </Buttons>
         </XStack>
@@ -108,28 +110,15 @@ const ImageEdit: React.FC<ImageEditProps> = ({
           alignItems="center"
           paddingVertical="$2"
         >
-          <Buttons
-            onPress={() => {
-              setImageEdit(false);
-            }}
-          >
+          <Buttons onPress={handleClose}>
             <AntDesign name="close" size={24} color="white" />
           </Buttons>
-          <XStack gap="$7">
-            <Buttons onPress={() => ref?.current?.undo()}>
-              <MaterialIcons name="undo" size={24} color="white" />
-            </Buttons>
-            <Buttons onPress={() => ref?.current?.redo()}>
-              <MaterialIcons name="redo" size={24} color="white" />
-            </Buttons>
-          </XStack>
-          <Button
-            size="$3"
-            chromeless
-            onPress={() => ref?.current?.readSignature()}
-          >
+          <Buttons onPress={() => canvasRef.current?.undo()}>
+            <MaterialIcons name="undo" size={24} color="white" />
+          </Buttons>
+          <Buttons onPress={onSaveImageAsync}>
             <AntDesign name="check" size={24} color="white" />
-          </Button>
+          </Buttons>
         </XStack>
       </YStack>
     </YStack>
