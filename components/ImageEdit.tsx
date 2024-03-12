@@ -1,13 +1,20 @@
-import { AntDesign, FontAwesome5, MaterialIcons } from "@expo/vector-icons";
+import {
+  AntDesign,
+  FontAwesome5,
+  MaterialIcons,
+  MaterialCommunityIcons,
+} from "@expo/vector-icons";
 import * as MediaLibrary from "expo-media-library";
 import React, { useRef, useState } from "react";
-import { Pressable, StyleSheet } from "react-native";
+import { Pressable } from "react-native";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
-import { Canvas, CanvasRef } from "react-native-image-draw";
+import { CanvasRef } from "react-native-image-draw";
 import Toast from "react-native-simple-toast";
 import { captureRef } from "react-native-view-shot";
-import { Card, Image, View, XStack, YStack } from "tamagui";
-import Buttons from "./Buttons";
+import { Button, Card, Image, View, XStack, YStack } from "tamagui";
+import TextInputScreen from "./TextInputScreen";
+import TextOutputScreen from "./TextOutputScreen";
+import CanvasScreen from "./CanvasScreen";
 
 interface ImageEditProps {
   image: string | undefined;
@@ -23,18 +30,18 @@ const ImageEdit: React.FC<ImageEditProps> = ({
   const [status, requestPermission] = MediaLibrary.usePermissions();
   const wrapperRef = useRef(null);
   const canvasRef = useRef<CanvasRef>(null);
-  const [isColorPalette, setColorPalette] = useState(false);
   const [brushColor, setBrushColor] = useState("#000");
+  const [isAddingText, setAddingText] = useState(false);
+  const [isInputBoxVisible, setIsInputBoxVisible] = useState(true);
+  const [showDeleteButton, setShowDeleteButton] = useState(false);
+  const [textValue, setTextValue] = useState("");
   const colorOptions = ["#555", "#FFF", "#F13A3A", "#58B650", "#1A9B94"];
+  const [isColorPalette, setColorPalette] = useState(false);
+  const [isDrawingEnabled, setDrawingEnabled] = useState(false);
 
   if (status === null) {
     requestPermission();
   }
-
-  const handleColorChange = (color: string) => {
-    setBrushColor(color);
-    setColorPalette(false);
-  };
 
   const handleClose = () => {
     setImageEdit(false);
@@ -56,6 +63,11 @@ const ImageEdit: React.FC<ImageEditProps> = ({
     }
   };
 
+  const enableDrawing = () => {
+    setColorPalette(!isColorPalette);
+    setDrawingEnabled(!isDrawingEnabled);
+  };
+
   return (
     <YStack>
       <GestureHandlerRootView>
@@ -66,59 +78,121 @@ const ImageEdit: React.FC<ImageEditProps> = ({
           aspectRatio={9 / 16}
         >
           <Image source={{ uri: image }} flex={1} resizeMode="contain" />
-          <Canvas
-            ref={canvasRef}
-            color={brushColor}
-            style={{
-              backgroundColor: "#0000",
-              ...StyleSheet.absoluteFillObject,
-            }}
+          <CanvasScreen
+            canvasRef={canvasRef}
+            brushColor={brushColor}
+            isDrawingEnabled={isDrawingEnabled}
+            enableDrawing={enableDrawing}
           />
+          {textValue !== "" && isInputBoxVisible && (
+            <>
+              {showDeleteButton && (
+                <Button position="absolute" theme="red">
+                  <MaterialCommunityIcons
+                    name="delete-outline"
+                    size={24}
+                    color="white"
+                  />
+                </Button>
+              )}
+              <TextOutputScreen
+                setShowDeleteButton={setShowDeleteButton}
+                setIsInputBoxVisible={setIsInputBoxVisible}
+                textValue={textValue}
+                setTextValue={setTextValue}
+                onPress={() => {
+                  setAddingText(true);
+                  setIsInputBoxVisible(false);
+                }}
+              />
+            </>
+          )}
+          {isAddingText && (
+            <TextInputScreen
+              initialText={textValue}
+              onDone={(newText: string) => {
+                setAddingText(false);
+                setTextValue(newText);
+                setIsInputBoxVisible(true);
+              }}
+              onCancel={() => setAddingText(false)}
+            />
+          )}
         </Card>
       </GestureHandlerRootView>
       <YStack>
         <XStack
-          justifyContent="space-between"
           alignItems="center"
+          justifyContent="space-between"
           borderBottomWidth="$0.5"
           borderBottomColor="$color2"
           paddingVertical="$2"
         >
-          <Buttons onPress={() => setColorPalette(!isColorPalette)}>
-            <MaterialIcons name="draw" size={24} color="white" />
-          </Buttons>
-          {isColorPalette && (
-            <XStack gap="$2">
-              {colorOptions.map((color, index) => (
-                <Pressable key={index} onPress={() => handleColorChange(color)}>
-                  <View
-                    width={24}
-                    height={24}
-                    borderRadius={12}
-                    backgroundColor={color}
-                  />
-                </Pressable>
-              ))}
-            </XStack>
-          )}
-          <Buttons onPress={() => canvasRef.current?.clear()}>
-            <FontAwesome5 name="eraser" size={24} color="white" />
-          </Buttons>
+          <XStack alignItems="center" gap="$2">
+            <Button size="$3" chromeless onPress={enableDrawing}>
+              <MaterialIcons name="draw" size={26} color="white" />
+            </Button>
+            {isColorPalette && (
+              <XStack gap="$2">
+                {colorOptions.map((color, index) => (
+                  <Pressable key={index} onPress={() => setBrushColor(color)}>
+                    <View
+                      width={24}
+                      height={24}
+                      borderRadius={12}
+                      backgroundColor={color}
+                    />
+                  </Pressable>
+                ))}
+              </XStack>
+            )}
+          </XStack>
+          <XStack>
+            {isDrawingEnabled && (
+              <Button
+                size="$3"
+                chromeless
+                onPress={() => canvasRef.current?.clear()}
+              >
+                <FontAwesome5 name="eraser" size={24} color="white" />
+              </Button>
+            )}
+            <Button
+              size="$3"
+              chromeless
+              onPress={() => {
+                setAddingText(!isAddingText);
+                setIsInputBoxVisible(false);
+              }}
+            >
+              <MaterialCommunityIcons
+                name="format-text"
+                size={26}
+                color="white"
+              />
+            </Button>
+          </XStack>
         </XStack>
         <XStack
           justifyContent="space-between"
           alignItems="center"
           paddingVertical="$2"
         >
-          <Buttons onPress={handleClose}>
+          <Button size="$3" chromeless onPress={handleClose}>
             <AntDesign name="close" size={24} color="white" />
-          </Buttons>
-          <Buttons onPress={() => canvasRef.current?.undo()}>
-            <MaterialIcons name="undo" size={24} color="white" />
-          </Buttons>
-          <Buttons onPress={onSaveImageAsync}>
+          </Button>
+          {isDrawingEnabled && (
+            <Button
+              size="$3"
+              chromeless
+              onPress={() => canvasRef.current?.undo()}
+            >
+              <MaterialIcons name="undo" size={24} color="white" />
+            </Button>
+          )}
+          <Button size="$3" chromeless onPress={onSaveImageAsync}>
             <AntDesign name="check" size={24} color="white" />
-          </Buttons>
+          </Button>
         </XStack>
       </YStack>
     </YStack>

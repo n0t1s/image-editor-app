@@ -1,5 +1,13 @@
 import ImageSelect from "./ImageSelect";
-import Buttons from "./Buttons";
 import ImageEdit from "./ImageEdit";
+import CanvasScreen from "./CanvasScreen";
+import TextInputScreen from "./TextInputScreen";
+import TextOutputScreen from "./TextOutputScreen";
 
-export { ImageEdit, ImageSelect, Buttons };
+export {
+  ImageEdit,
+  ImageSelect,
+  TextInputScreen,
+  TextOutputScreen,
+  CanvasScreen,
+};
