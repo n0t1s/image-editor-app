@@ -75,7 +75,7 @@ const ImageEdit: React.FC<ImageEditProps> = ({
           ref={wrapperRef}
           collapsable={false}
           overflow="hidden"
-          aspectRatio={9 / 16}
+          aspectRatio={9.2 / 16}
         >
           <Image source={{ uri: image }} flex={1} resizeMode="contain" />
           <CanvasScreen

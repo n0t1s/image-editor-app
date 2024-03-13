@@ -36,7 +36,7 @@ const ImageSelect: React.FC<ImageSelectProps> = ({
   };
   return (
     <YStack gap="$5">
-      <Card elevate overflow="hidden" aspectRatio={9 / 16}>
+      <Card elevate overflow="hidden" aspectRatio={9.2 / 16}>
         <Image source={{ uri: image }} flex={1} resizeMode="contain" />
       </Card>
       <YStack gap="$3.5" alignItems="center">
