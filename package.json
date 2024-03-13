@@ -6,7 +6,6 @@
     "upgrade:tamagui": "yarn up '*tamagui*'@latest '@tamagui/*'@latest",
     "upgrade:tamagui:canary": "yarn up '*tamagui*'@canary '@tamagui/*'@canary",
     "start": "expo start",
-    "postinstall": "patch-package",
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
@@ -15,6 +14,7 @@
   "jest": {
     "preset": "jest-expo"
   },
+  "overrides": { "@luncheon/simplify-svg-path": "0.2.0" },
   "dependencies": {
     "@benjeau/react-native-draw": "^0.8.3",
     "@benjeau/react-native-draw-extras": "^0.2.2",
@@ -34,8 +34,6 @@
     "expo-status-bar": "~1.11.1",
     "expo-system-ui": "~2.9.3",
     "expo-web-browser": "~12.8.2",
-    "patch-package": "^8.0.0",
-    "postinstall-postinstall": "^2.1.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-helmet-async": "~2.0.4",

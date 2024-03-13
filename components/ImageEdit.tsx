@@ -87,7 +87,7 @@ const ImageEdit: React.FC<ImageEditProps> = ({
           {textValue !== "" && isInputBoxVisible && (
             <>
               {showDeleteButton && (
-                <Button position="absolute" theme="red">
+                <Button position="absolute">
                   <MaterialCommunityIcons
                     name="delete-outline"
                     size={24}
