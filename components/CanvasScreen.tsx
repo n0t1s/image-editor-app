@@ -1,7 +1,7 @@
 import React from "react";
 import { StyleSheet } from "react-native";
 import { Canvas, CanvasRef } from "react-native-image-draw";
-import { Button, View } from "tamagui";
+import { Button } from "tamagui";
 
 interface CanvasScreenProps {
   canvasRef: React.RefObject<CanvasRef>;

@@ -1,21 +1,18 @@
 {
-    "cli": {
-      "version": ">= 7.1.1"
+  "cli": {
+    "version": ">= 7.2.0"
+  },
+  "build": {
+    "development": {
+      "developmentClient": true,
+      "distribution": "internal"
     },
-    "build": {
-      "development": {
-        "developmentClient": true,
-        "distribution": "internal"
-      },
-      "preview": {
-        "android": {
-          "buildType": "apk"
-        }
-      },
-      "production": {}
+    "preview": {
+      "distribution": "internal"
     },
-    "submit": {
-      "production": {}
-    }
+    "production": {}
+  },
+  "submit": {
+    "production": {}
   }
-  
+}

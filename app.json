@@ -1,48 +1,53 @@
 {
   "expo": {
-    "name": "demo",
-    "slug": "demo",
-    "version": "1.0.0",
-    "orientation": "portrait",
-    "icon": "./assets/images/icon.png",
-    "scheme": "myapp",
-    "userInterfaceStyle": "automatic",
-    "splash": {
-      "image": "./assets/images/splash.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+    "android": {
+      "adaptiveIcon": {
+        "backgroundColor": "#ffffff",
+        "foregroundImage": "./assets/images/adaptive-icon.png"
+      },
+      "package": "com.rishabh1s.sampleapp",
+      "permissions": [
+        "android.permission.READ_EXTERNAL_STORAGE",
+        "android.permission.WRITE_EXTERNAL_STORAGE",
+        "android.permission.ACCESS_MEDIA_LOCATION",
+        "android.permission.RECORD_AUDIO"
+      ]
     },
     "assetBundlePatterns": [
       "**/*"
     ],
+    "experiments": {
+      "typedRoutes": true
+    },
+    "icon": "./assets/images/icon.png",
     "ios": {
-      "supportsTablet": true,
       "infoPlist": {
+        "NSPhotoLibraryAddUsageDescription": "Allow Sample-app to save photos.",
+        "NSPhotoLibraryUsageDescription": "Allow Sample-app to access your photos.",
         "UIBackgroundModes": [
           "audio"
         ]
-      }
+      },
+      "supportsTablet": true
     },
-    "android": {
-      "adaptiveIcon": {
-        "foregroundImage": "./assets/images/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
-      }
-    },
-    "web": {
-      "bundler": "metro",
-      "output": "static",
-      "favicon": "./assets/images/favicon.png"
-    },
+    "name": "sample-app",
+    "orientation": "portrait",
     "plugins": [
       "expo-router",
       "expo-font",
       [
+        "@react-native-voice/voice",
+        {
+          "microphonePermission": "Allow Sample-app to access the microphone.",
+          "speechRecognitionPermission": "Allow Sample-app to access your speechRecognition."
+        }
+      ],
+      [
         "expo-media-library",
         {
-          "photosPermission": "Allow Demo-app to access your photos.",
-          "savePhotosPermission": "Allow Demo-app to save photos.",
-          "isAccessMediaLocationEnabled": true
+          "isAccessMediaLocationEnabled": true,
+          "photosPermission": "Allow Sample-app to access your photos.",
+          "savePhotosPermission": "Allow Sample-app to save photos."
         }
       ],
       [
@@ -52,8 +57,27 @@
         }
       ]
     ],
-    "experiments": {
-      "typedRoutes": true
+    "scheme": "myapp",
+    "slug": "sample-app",
+    "splash": {
+      "backgroundColor": "#ffffff",
+      "image": "./assets/images/splash.png",
+      "resizeMode": "contain"
+    },
+    "userInterfaceStyle": "automatic",
+    "version": "1.0.0",
+    "web": {
+      "bundler": "metro",
+      "favicon": "./assets/images/favicon.png",
+      "output": "static"
+    },
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "52b939e6-c9aa-4795-9096-1af596449613"
+      }
     }
   }
 }

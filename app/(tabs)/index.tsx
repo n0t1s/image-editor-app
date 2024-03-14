@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { YStack } from "tamagui";
 import { ImageEdit, ImageSelect } from "../../components";
-import { StatusBar } from "react-native";
 
 export default function MainScreen() {
   const [image, setImage] = useState<string | undefined>();
@@ -10,7 +8,6 @@ export default function MainScreen() {
 
   return (
     <SafeAreaView>
-      <StatusBar />
       {!imageEdit ? (
         <ImageSelect
           image={image}
