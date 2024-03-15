@@ -1,6 +1,5 @@
 import React from "react";
 import { Ionicons } from "@expo/vector-icons";
-import { Button } from "tamagui";
 import { useAudio } from "../hooks/useAudio";
 import { Pressable } from "react-native";
 
